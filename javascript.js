@@ -1,20 +1,17 @@
 const library = [];
 const lib = document.querySelector(".library");
 
-
-function Book(title, author, status) {
-  if (!new.target) {
-    throw Error("must use new operator for this constructor");
+class Book {
+  constructor(title, author, status) {
+    this.title = title;
+    this.author = author;
+    this.status = status;
+    this.id = crypto.randomUUID();
   }
-  this.title = title;
-  this.author = author;
-  this.status = status;
-  this.id = crypto.randomUUID();
+  changeStatus() {
+    this.status = this.status === "read" ? "unread" : "read";
+  }
 }
-
-Book.prototype.changeStatus = function () {
-  this.status = this.status === "read" ? "unread" : "read";
-};
 
 function addBooktoLibrary(title, author, status) {
   const book = new Book(title, author, status);
